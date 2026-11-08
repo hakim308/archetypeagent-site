@@ -2,6 +2,10 @@
 
 A lightweight, mobile-friendly marketing workspace for small businesses.
 
+## Market research and product direction
+
+See [MARKET-RESEARCH-STRATEGY.md](MARKET-RESEARCH-STRATEGY.md) for the November 2026 market assessment, target segment, product differentiation, validation gates, pricing hypotheses, unit economics and implementation priorities.
+
 ## Current product status
 
 The public site is a static GitHub Pages app. The browser studio includes local sample templates and an AI mode backed by a Cloudflare Worker and the OpenAI Responses API. The Worker has been deployed, the `OPENAI_API_KEY` secret is configured, and the Worker URL is connected in `index.html`. The health endpoint has been verified; a real generation request still needs a successful end-to-end test from the website.
