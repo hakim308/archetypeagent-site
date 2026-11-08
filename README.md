@@ -10,7 +10,7 @@ See [MARKET-RESEARCH-STRATEGY.md](MARKET-RESEARCH-STRATEGY.md) for the November 
 
 The public site is a static GitHub Pages app. The browser studio includes local sample templates and an AI mode backed by a Cloudflare Worker and the OpenAI Responses API. The Worker has been deployed, the `OPENAI_API_KEY` secret is configured, and the Worker URL is connected in `index.html`. The health endpoint has been verified; a real generation request still needs a successful end-to-end test from the website.
 
-There are no user accounts, persistent customer workspaces, or payments.
+There are no completed user accounts, persistent customer workspaces, or payments yet. A production D1 database has now been provisioned in the EU jurisdiction and bound to the Cloudflare Worker; its initial schema is in `database/schema.sql`. The database is infrastructure only: authentication, authorization, tenant isolation in API routes, and billing are not implemented yet.
 
 ## Features
 
@@ -42,7 +42,9 @@ Follow [AI-SETUP.md](AI-SETUP.md). Never expose the OpenAI API key in browser co
 - Deploy and test the Worker and website integration.
 - Configure Cloudflare rate limiting and monitor API usage/spending.
 - Review and complete the privacy and terms pages with the operator's real contact/legal information.
-- Add authentication, persistent storage, and payments only after their security, privacy, and legal requirements are designed.
+- Implement secure authentication and tenant-scoped data access using the provisioned D1 database.
+- Add server-side usage metering and subscription entitlements before payment integration.
+- Add payments only after seller approval and legal readiness.
 
 ## Security
 
