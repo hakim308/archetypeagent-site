@@ -53,3 +53,8 @@ Follow [AI-SETUP.md](AI-SETUP.md). Never expose the OpenAI API key in browser co
 ## Security
 
 Do not commit API keys, passwords, customer records, or other secrets. CORS is a browser control, not authentication or abuse protection. Do not enter sensitive customer information into the AI form.
+
+
+## Payments readiness
+
+See [PAYMENTS-READINESS.md](PAYMENTS-READINESS.md) for PayPal eligibility checks, provider-neutral checkout architecture, subscription lifecycle, sandbox test plan and go-live gates. Live payments remain disabled until merchant, legal, technical and payout eligibility are verified.
