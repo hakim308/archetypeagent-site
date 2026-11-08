@@ -4,33 +4,41 @@ A lightweight, mobile-friendly marketing workspace for small businesses.
 
 ## Current product status
 
-This repository currently contains a static, single-page website in `index.html`. The starter studio creates editable marketing drafts locally in the browser using deterministic templates. It does **not** call an AI model, store accounts, process payments, or send data to a server.
+The public site is a static GitHub Pages app. The browser studio includes local sample templates and an optional AI mode backed by a Cloudflare Worker and the OpenAI Responses API. **AI mode remains inactive until the Worker is deployed, its `OPENAI_API_KEY` secret is configured, and the Worker URL is added to the `archetype-api-url` meta tag in `index.html`.**
+
+There are no user accounts, persistent customer workspaces, or payments.
 
 ## Features
 
 - Responsive landing page and product overview
-- Social post, promotion, customer reply, and 30-day content-plan templates
+- Social post, promotion, customer reply, and 30-day content-plan drafts
+- Local sample mode for quick previews
+- Prepared server-side AI generation flow (requires setup)
 - Copy-to-clipboard and plain-text download
-- No build step or runtime dependency
+- No frontend build step
 
 ## Run locally
 
-Open `index.html` in a modern browser, or serve the repository with any static web server.
+Open `index.html` in a modern browser, or serve the repository with any static web server. AI mode requires a deployed Worker and a configured endpoint; local sample mode works without them.
 
-## Deploy with GitHub Pages
+## Deploy the website
 
 1. In the repository, open **Settings → Pages**.
 2. Under **Build and deployment**, choose **GitHub Actions** as the source.
-3. Push to the `main` branch. The workflow in `.github/workflows/pages.yml` will publish the site.
-4. Find the public URL in **Settings → Pages** after the first successful deployment.
+3. Push to the `main` branch.
+4. Check **Settings → Pages** and the Actions tab for the deployment result.
 
-## Product roadmap
+## Deploy the AI backend
 
-1. Validate the static site and user experience.
-2. Deploy the prepared secure server-side AI endpoint in worker/index.js using AI-SETUP.md (never expose provider API keys in browser code).
-3. Add authentication and data storage only after selecting a suitable privacy and security model.
-4. Add payments only after pricing, legal requirements, and customer value have been validated.
+Follow [AI-SETUP.md](AI-SETUP.md). Never expose the OpenAI API key in browser code or GitHub. The Worker uses `gpt-6-luna` by default and sends requests through the OpenAI Responses API with `store: false`.
 
-## Security and privacy
+## Before public launch
 
-Do not commit API keys, passwords, customer records, or other secrets. Any future AI integration must call the provider from a protected server-side environment and disclose what information is transmitted.
+- Deploy and test the Worker and website integration.
+- Configure Cloudflare rate limiting and monitor API usage/spending.
+- Review and complete the privacy and terms pages with the operator's real contact/legal information.
+- Add authentication, persistent storage, and payments only after their security, privacy, and legal requirements are designed.
+
+## Security
+
+Do not commit API keys, passwords, customer records, or other secrets. CORS is a browser control, not authentication or abuse protection. Do not enter sensitive customer information into the AI form.
