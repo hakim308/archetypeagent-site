@@ -74,3 +74,13 @@ CREATE INDEX IF NOT EXISTS idx_workspaces_owner ON workspaces(owner_user_id);
 CREATE INDEX IF NOT EXISTS idx_brands_workspace ON brands(workspace_id);
 CREATE INDEX IF NOT EXISTS idx_campaigns_workspace_created ON campaigns(workspace_id,created_at);
 CREATE INDEX IF NOT EXISTS idx_usage_workspace_created ON usage_ledger(workspace_id,created_at);
+
+-- Public AI demo abuse and cost controls. IP addresses are stored only as SHA-256 hashes.
+CREATE TABLE IF NOT EXISTS api_rate_limits (
+  ip_hash TEXT NOT NULL,
+  window_type TEXT NOT NULL CHECK(window_type IN ('minute','day')),
+  window_start INTEGER NOT NULL,
+  request_count INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY(ip_hash, window_type, window_start)
+);
+CREATE INDEX IF NOT EXISTS idx_api_rate_limits_window ON api_rate_limits(window_start);
