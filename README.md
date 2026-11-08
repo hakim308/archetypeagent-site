@@ -27,7 +27,7 @@ Open `index.html` in a modern browser, or serve the repository with any static w
 ## Product roadmap
 
 1. Validate the static site and user experience.
-2. Add a secure server-side AI endpoint (never expose provider API keys in browser code).
+2. Deploy the prepared secure server-side AI endpoint in worker/index.js using AI-SETUP.md (never expose provider API keys in browser code).
 3. Add authentication and data storage only after selecting a suitable privacy and security model.
 4. Add payments only after pricing, legal requirements, and customer value have been validated.
 
