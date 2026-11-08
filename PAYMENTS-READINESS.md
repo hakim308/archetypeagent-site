@@ -63,3 +63,23 @@ Live subscriptions remain disabled until all of the following are true:
 ## Marketing while payment is pending
 
 Market an honest free preview or recruit a no-payment design-partner cohort. Do not show a functioning Subscribe button, claim payments are accepted, or promise features that are not implemented. Do not publish the founder's PayPal email. Convert to paid marketing only after the go-live gate passes.
+
+## Algeria-specific eligibility findings (checked 9 November 2026)
+
+PayPal's Algeria help page distinguishes Personal accounts (personal payments and casual sellers) from Business accounts (merchant checkout products such as PayPal Checkout). PayPal's developer seller-onboarding country table currently lists Algeria as:
+- Business, before PayPal Checkout: Yes
+- Business, after PayPal Checkout: Yes
+- Casual, before PayPal Checkout: No
+- Casual, after PayPal Checkout: No
+
+This means the founder's existing Personal account, even if it has received game-payout funds, is not eligible for the documented PayPal Checkout integration path in Algeria. A personal incoming payout does not prove merchant or recurring-billing eligibility. Do not wire that Personal account into SaaS subscriptions or label commercial sales as personal transfers.
+
+PayPal's Algeria Business-account onboarding information asks for a business registration number and business bank details. The founder has stated they do not currently have a commercial registration (RC), so do not attempt to create a Business account with invented details. Contact PayPal support for written clarification on accepted Algerian individual/auto-entrepreneur documents and recurring subscription API access before proceeding.
+
+Potential Algerian formalization route to investigate: ANAE's official eligible activity catalogue includes digital activities such as AI system development (code 020710), software development, and digital marketing. The correct activity for operating a hosted SaaS product, annual turnover ceiling, export-of-services rules, tax/social-security treatment, foreign-currency receipt and repatriation requirements must be confirmed with ANAE, the tax authority and the receiving bank. ANAE eligibility is not itself proof that PayPal will approve a merchant account.
+
+Official references:
+- https://www.paypal.com/dz/cshelp/article/ما-الفرق-بين-الحسابات-الشخصية-والتجارية؟-help318?locale.x=ar_DZ
+- https://developer.paypal.com/platforms/seller-onboarding
+- https://activities.anae.dz/activities/020700/
+- https://anae.dz/ar/
