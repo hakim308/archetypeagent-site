@@ -4,3 +4,8 @@ compatibility_date = "2026-11-08"
 
 [vars]
 AI_MODEL = "gpt-6-luna"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "archetype-agent-prod"
+database_id = "fef4ad79-fd69-486c-89a0-4f6d805033c8"
