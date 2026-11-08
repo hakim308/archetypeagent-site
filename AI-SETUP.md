@@ -6,7 +6,11 @@ The public website is static GitHub Pages. The OpenAI API key must stay on the s
 
 - `worker/index.js`: Cloudflare Worker API. It validates inputs, supports a health check, calls the OpenAI Responses API server-side, and returns the generated draft.
 - `wrangler.toml`: Wrangler project configuration. The default model is `gpt-6-luna`.
-- `index.html`: reads the Worker endpoint from the `archetype-api-url` meta tag. The value is intentionally blank until the Worker is deployed.
+- `index.html`: reads the deployed Worker endpoint from the `archetype-api-url` meta tag.
+
+## Current deployment
+
+The Worker `archetype-agent-api` is deployed at `https://archetype-agent-api.archetypeagent.workers.dev`, and its health endpoint has returned `ok: true` and `configured: true`. The site HTML is connected to this endpoint. The studio supports Facebook, Instagram, LinkedIn, TikTok, YouTube, and Email, plus a 7-day schedule and a 30-day calendar. A real AI generation request must still be tested end-to-end from the public website.
 
 ## 1. Deploy the Worker from the Cloudflare dashboard
 
