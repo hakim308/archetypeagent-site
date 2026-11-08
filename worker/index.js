@@ -57,13 +57,33 @@ export default {
       return json({ error: "AI service is not configured yet." }, 503, origin);
     }
 
-    // Optional Cloudflare Workers Rate Limiting binding. Configure it before public launch.
-    if (env.API_RATE_LIMITER) {
-      const key = request.headers.get("CF-Connecting-IP") || "unknown";
-      const decision = await env.API_RATE_LIMITER.limit({ key });
-      if (!decision.success) {
-        return json({ error: "Too many requests. Please wait and try again." }, 429, origin);
+    // Enforce per-IP limits using D1 so the public demo cannot run up unlimited AI costs.
+    // Store only a one-way hash of the connecting IP, never the raw address.
+    if (env.DB) {
+      try {
+        const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+        const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(ip));
+        const ipHash = Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, "0")).join("");
+        const now = Math.floor(Date.now() / 1000);
+        const minuteWindow = Math.floor(now / 60);
+        const dayWindow = Math.floor(now / 86400);
+        const minute = await env.DB.prepare(
+          "INSERT INTO api_rate_limits (ip_hash, window_type, window_start, request_count) VALUES (?, 'minute', ?, 1) ON CONFLICT(ip_hash, window_type, window_start) DO UPDATE SET request_count = request_count + 1 RETURNING request_count"
+        ).bind(ipHash, minuteWindow).first();
+        const day = await env.DB.prepare(
+          "INSERT INTO api_rate_limits (ip_hash, window_type, window_start, request_count) VALUES (?, 'day', ?, 1) ON CONFLICT(ip_hash, window_type, window_start) DO UPDATE SET request_count = request_count + 1 RETURNING request_count"
+        ).bind(ipHash, dayWindow).first();
+        if ((minute?.request_count || 0) > 5 || (day?.request_count || 0) > 40) {
+          return json({ error: "Free demo limit reached. Please try again later." }, 429, origin);
+        }
+        if (now % 100 === 0) {
+          await env.DB.prepare("DELETE FROM api_rate_limits WHERE window_start < ?").bind(dayWindow - 3).run();
+        }
+      } catch {
+        return json({ error: "The service is temporarily unavailable. Please try again shortly." }, 503, origin);
       }
+    } else {
+      return json({ error: "The service is not fully configured yet." }, 503, origin);
     }
 
     const contentLength = Number(request.headers.get("Content-Length") || 0);
