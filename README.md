@@ -6,6 +6,10 @@ A lightweight, mobile-friendly marketing workspace for small businesses.
 
 See [MARKET-RESEARCH-STRATEGY.md](MARKET-RESEARCH-STRATEGY.md) for the November 2026 market assessment, target segment, product differentiation, validation gates, pricing hypotheses, unit economics and implementation priorities.
 
+## Latest market research (9 November 2026)
+
+See [MARKET-RESEARCH-ADDENDUM-2026-11-09.md](MARKET-RESEARCH-ADDENDUM-2026-11-09.md) for current SMB demand signals and the new review-response, lead-follow-up and Google Business Profile draft workflows.
+
 ## Pre-launch marketing
 
 See [GO-TO-MARKET-LAUNCH-KIT.md](GO-TO-MARKET-LAUNCH-KIT.md) for the pilot offer, 30-day organic acquisition plan, ready-to-use social posts, personalized outreach message, payment readiness gates and go/no-go criteria.
