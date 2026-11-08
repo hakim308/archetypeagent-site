@@ -16,15 +16,15 @@ See [GO-TO-MARKET-LAUNCH-KIT.md](GO-TO-MARKET-LAUNCH-KIT.md) for the pilot offer
 
 ## Current product status
 
-The public site is a static GitHub Pages app. The browser studio includes local sample templates and an AI mode backed by a Cloudflare Worker and the OpenAI Responses API. The Worker has been deployed, the `OPENAI_API_KEY` secret is configured, and the Worker URL is connected in `index.html`. The health endpoint has been verified; a real generation request still needs a successful end-to-end test from the website.
+The public site is a static GitHub Pages app. The browser studio includes local sample templates and an AI mode backed by a Cloudflare Worker and the OpenAI Responses API. A live health and generation test could not be completed from this session because the external Worker endpoint was blocked by the execution environment; verify it from a normal browser after deployment. The Worker source has had a malformed prompt-string issue corrected in the latest commit.
 
 There are no completed user accounts, persistent customer workspaces, or payments yet. A production D1 database has now been provisioned in the EU jurisdiction and bound to the Cloudflare Worker; its initial schema is in `database/schema.sql`. The database is infrastructure only: authentication, authorization, tenant isolation in API routes, and billing are not implemented yet. A hashed-IP rate-limit table has been added to the D1 schema and provisioned; the matching Worker code is committed but must be deployed before the limits protect the live endpoint.
 
 ## Features
 
 - Responsive landing page and product overview
-- Social post, promotion, customer reply, 7-day publishing schedule, and 30-day content-plan drafts
-- Platform-specific drafts for Facebook, Instagram, LinkedIn, TikTok, YouTube, and Email
+- Social post, promotion, customer reply, review response, lead follow-up, Google Business Profile update, 7-day publishing schedule, and 30-day content-plan drafts
+- Platform-specific drafts for Facebook, Instagram, LinkedIn, TikTok, YouTube, Email, and Google Business Profile
 - Local sample mode for quick previews
 - Prepared server-side AI generation flow (requires setup)
 - Copy-to-clipboard and plain-text download
