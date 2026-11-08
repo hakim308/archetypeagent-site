@@ -80,9 +80,9 @@ export default {
       return json({ error: "Invalid JSON body." }, 400, origin);
     }
 
-    const tasks = ["post", "promo", "reply", "plan"];
+    const tasks = ["post", "promo", "reply", "week", "plan"];
     const tones = ["friendly", "professional", "bold", "warm"];
-    const platforms = ["Facebook", "Instagram", "LinkedIn", "TikTok", "Email"];
+    const platforms = ["Facebook", "Instagram", "LinkedIn", "TikTok", "YouTube", "Email"];
     const task = String(body.task || "");
     const business = String(body.business || "").trim().slice(0, 90);
     const audience = String(body.audience || "").trim().slice(0, 120);
@@ -98,6 +98,7 @@ export default {
       post: "social media post",
       promo: "promotion or offer",
       reply: "customer service reply",
+      week: "7-day publishing schedule",
       plan: "30-day content calendar"
     };
     const instructions = [
@@ -106,8 +107,9 @@ export default {
       "Never invent prices, discounts, dates, testimonials, credentials, guarantees, results, availability or product claims.",
       "If details are missing, use clear placeholders in square brackets rather than making facts up.",
       "Avoid spammy language, fake urgency and exaggerated claims.",
-      "Adapt length and format to the requested platform.",
-      "For a 30-day plan, provide 30 numbered entries with distinct angles and varied formats.",
+      "Adapt length, hook, format, CTA, and creative treatment to the requested platform. For YouTube, distinguish Shorts from long-form video and include a title and thumbnail concept. For TikTok, prioritize a strong first-second hook, vertical video beats, and an on-screen text suggestion. For Facebook, use conversational copy, community prompts, and shareable formats.",
+      "For a 7-day publishing schedule, provide exactly seven day-by-day entries. Each entry must include a specific concept, format, opening hook, key beats, caption or title, CTA, and suggested publishing window expressed in the target audience\u2019s local time. Vary formats and avoid repeating the same idea.",
+      "For a 30-day plan, provide 30 numbered entries with distinct angles and varied formats. Include a practical weekly rhythm and adapt every entry to the chosen platform.",
       "Return only the draft."
     ].join(" ");
     const input = [
@@ -131,7 +133,7 @@ export default {
           model: env.AI_MODEL || "gpt-6-luna",
           instructions,
           input,
-          max_output_tokens: task === "plan" ? 2400 : 900,
+          max_output_tokens: task === "plan" ? 3000 : task === "week" ? 1800 : 1000,
           store: false
         })
       });
