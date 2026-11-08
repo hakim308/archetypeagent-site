@@ -1,0 +1,6 @@
+name = "archetype-agent-api"
+main = "worker/index.js"
+compatibility_date = "2026-11-08"
+
+[vars]
+AI_MODEL = "gpt-6-luna"
