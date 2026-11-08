@@ -4,14 +4,15 @@ A lightweight, mobile-friendly marketing workspace for small businesses.
 
 ## Current product status
 
-The public site is a static GitHub Pages app. The browser studio includes local sample templates and an optional AI mode backed by a Cloudflare Worker and the OpenAI Responses API. **AI mode remains inactive until the Worker is deployed, its `OPENAI_API_KEY` secret is configured, and the Worker URL is added to the `archetype-api-url` meta tag in `index.html`.**
+The public site is a static GitHub Pages app. The browser studio includes local sample templates and an AI mode backed by a Cloudflare Worker and the OpenAI Responses API. The Worker has been deployed, the `OPENAI_API_KEY` secret is configured, and the Worker URL is connected in `index.html`. The health endpoint has been verified; a real generation request still needs a successful end-to-end test from the website.
 
 There are no user accounts, persistent customer workspaces, or payments.
 
 ## Features
 
 - Responsive landing page and product overview
-- Social post, promotion, customer reply, and 30-day content-plan drafts
+- Social post, promotion, customer reply, 7-day publishing schedule, and 30-day content-plan drafts
+- Platform-specific drafts for Facebook, Instagram, LinkedIn, TikTok, YouTube, and Email
 - Local sample mode for quick previews
 - Prepared server-side AI generation flow (requires setup)
 - Copy-to-clipboard and plain-text download
