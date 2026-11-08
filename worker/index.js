@@ -100,9 +100,9 @@ export default {
       return json({ error: "Invalid JSON body." }, 400, origin);
     }
 
-    const tasks = ["post", "promo", "reply", "week", "plan"];
+    const tasks = ["post", "promo", "reply", "review", "lead", "local", "week", "plan"];
     const tones = ["friendly", "professional", "bold", "warm"];
-    const platforms = ["Facebook", "Instagram", "LinkedIn", "TikTok", "YouTube", "Email"];
+    const platforms = ["Facebook", "Instagram", "LinkedIn", "TikTok", "YouTube", "Email", "Google Business Profile"];
     const task = String(body.task || "");
     const business = String(body.business || "").trim().slice(0, 90);
     const audience = String(body.audience || "").trim().slice(0, 120);
@@ -118,6 +118,9 @@ export default {
       post: "social media post",
       promo: "promotion or offer",
       reply: "customer service reply",
+      review: "public customer review response",
+      lead: "personalized lead follow-up message",
+      local: "Google Business Profile update for a local business",
       week: "7-day publishing schedule",
       plan: "30-day content calendar"
     };
@@ -128,7 +131,7 @@ export default {
       "If details are missing, use clear placeholders in square brackets rather than making facts up.",
       "Avoid spammy language, fake urgency and exaggerated claims.",
       "Adapt length, hook, format, CTA, and creative treatment to the requested platform. For YouTube, distinguish Shorts from long-form video and include a title and thumbnail concept. For TikTok, prioritize a strong first-second hook, vertical video beats, and an on-screen text suggestion. For Facebook, use conversational copy, community prompts, and shareable formats.",
-      "For a 7-day publishing schedule, provide exactly seven day-by-day entries. Each entry must include a specific concept, format, opening hook, key beats, caption or title, CTA, and suggested publishing window expressed in the target audience\u2019s local time. Vary formats and avoid repeating the same idea.",
+      "For review responses, acknowledge the specific feedback, stay calm and concise, do not disclose personal information, do not argue, and never offer incentives for positive reviews. If the review text is missing, provide a reusable response template with placeholders.\n      "For lead follow-up, write a helpful, personalized response with one clear next step. Do not imply a lead has consented to marketing messages; avoid repeated unsolicited follow-ups and include an opt-out reminder where relevant.\n      "For Google Business Profile updates, write a concise local update with a clear service/location context and truthful CTA. Do not invent address, opening hours, phone number, prices, promotions or service areas. Do not keyword-stuff.\n      "For a 7-day publishing schedule, provide exactly seven day-by-day entries. Each entry must include a specific concept, format, opening hook, key beats, caption or title, CTA, and suggested publishing window expressed in the target audience\u2019s local time. Vary formats and avoid repeating the same idea.",
       "For a 30-day plan, provide 30 numbered entries with distinct angles and varied formats. Include a practical weekly rhythm and adapt every entry to the chosen platform.",
       "Return only the draft."
     ].join(" ");
