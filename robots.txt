@@ -1,3 +1,2 @@
 User-agent: *
 Allow: /
-Sitemap: https://hakim308.github.io/archetypeagent-site/sitemap.xml
