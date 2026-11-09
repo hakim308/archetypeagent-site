@@ -83,3 +83,14 @@ Official references:
 - https://developer.paypal.com/platforms/seller-onboarding
 - https://activities.anae.dz/activities/020700/
 - https://anae.dz/ar/
+
+
+## Alternative payout route researched on 9 November 2026
+
+A possible way to keep the founder's existing personal PayPal account as the **payout destination** (not as the direct customer checkout) is a Merchant of Record provider:
+
+- Lemon Squeezy's official supported-country page lists Algeria for bank payouts, and its payout guide says PayPal payouts can go to a verified Personal or Business PayPal account. PayPal payouts are in USD, are created twice monthly, have a 13-day sales hold, and require a $50 minimum payout. Sources: https://docs.lemonsqueezy.com/help/getting-started/supported-countries and https://docs.lemonsqueezy.com/help/getting-started/getting-paid
+- This is not approval. Lemon Squeezy still reviews the merchant, identity, product and payout details; the founder must complete onboarding truthfully and confirm that the account can be approved for an AI SaaS product from Algeria. A verified PayPal Personal payout destination is not the same as permission to use that personal account as the site's direct checkout merchant.
+- Paddle's current official supported-country page says it works with software businesses worldwide except its published unsupported list; Algeria is not on that list. However, this alone does not confirm a specific Algerian founder's onboarding or payout method. Source: https://www.paddle.com/help/start/account-verification/which-countries-are-supported-by-paddle
+
+Recommended next step: compare Lemon Squeezy first for the specific requirement of receiving payouts to the existing verified personal PayPal account, while also checking direct Algerian bank payout as a fallback. Do not integrate live checkout until merchant approval and Algerian legal/tax/banking requirements are confirmed. Never describe this route as guaranteed.
