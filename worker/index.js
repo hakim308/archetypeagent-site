@@ -77,7 +77,7 @@ export default {
           return json({ error: "Free demo limit reached. Please try again later." }, 429, origin);
         }
         if (now % 100 === 0) {
-          await env.DB.prepare("DELETE FROM api_rate_limits WHERE window_start < ?").bind(dayWindow - 3).run();
+          await env.DB.prepare("DELETE FROM api_rate_limits WHERE (window_type = 'minute' AND window_start < ?) OR (window_type = 'day' AND window_start < ?)").bind(minuteWindow - 1440, dayWindow - 30).run();
         }
       } catch {
         return json({ error: "The service is temporarily unavailable. Please try again shortly." }, 503, origin);
