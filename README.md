@@ -8,7 +8,7 @@ See [MARKET-RESEARCH-STRATEGY.md](MARKET-RESEARCH-STRATEGY.md) for the November 
 
 ## Latest market research (9 November 2026)
 
-See [MARKET-RESEARCH-ADDENDUM-2026-11-09.md](MARKET-RESEARCH-ADDENDUM-2026-11-09.md) for current SMB demand signals and the new review-response, lead-follow-up and Google Business Profile draft workflows.
+See [MARKET-RESEARCH-ADDENDUM-2026-11-09.md](MARKET-RESEARCH-ADDENDUM-2026-11-09.md) for current SMB demand signals, competitor mapping, product priorities, trust requirements and the review-response, lead-follow-up and Google Business Profile draft workflows.
 
 ## Pre-launch marketing
 
