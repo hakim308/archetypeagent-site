@@ -18,7 +18,9 @@ See [GO-TO-MARKET-LAUNCH-KIT.md](GO-TO-MARKET-LAUNCH-KIT.md) for the pilot offer
 
 The public site is a static GitHub Pages app. The browser studio includes local sample templates and an AI mode backed by a Cloudflare Worker and the OpenAI Responses API. A live health and generation test could not be completed from this session because the external Worker endpoint was blocked by the execution environment; verify it from a normal browser after deployment. The Worker source has had a malformed prompt-string issue corrected in the latest commit.
 
-There are no completed user accounts, persistent customer workspaces, or payments yet. A production D1 database has now been provisioned in the EU jurisdiction and bound to the Cloudflare Worker; its initial schema is in `database/schema.sql`. The database is infrastructure only: authentication, authorization, tenant isolation in API routes, and billing are not implemented yet. A hashed-IP rate-limit table has been added to the D1 schema and provisioned; the matching Worker code is committed but must be deployed before the limits protect the live endpoint.
+The production D1 database `archetype-agent-prod` is provisioned in the EU jurisdiction, bound to the Cloudflare Worker as `DB`, and its initial schema has now been applied and verified. The schema contains users, workspaces, brands, campaigns, subscriptions, usage ledger, webhook events, and hashed-IP rate-limit tables. The reproducible migration is tracked at `database/migrations/0001_initial_schema.sql`; the canonical schema is `database/schema.sql`.
+
+The database is infrastructure only: authentication, authorization, tenant isolation in API routes, customer account flows, saved workspaces, and billing are not implemented yet. The public AI demo rate limits are 5 requests/minute and 40/day per hashed IP; these limits depend on the deployed Worker and D1 binding. Verify a real AI request from the public site before promoting it.
 
 ## Features
 
@@ -26,7 +28,7 @@ There are no completed user accounts, persistent customer workspaces, or payment
 - Social post, promotion, customer reply, review response, lead follow-up, Google Business Profile update, 7-day publishing schedule, and 30-day content-plan drafts
 - Platform-specific drafts for Facebook, Instagram, LinkedIn, TikTok, YouTube, Email, and Google Business Profile
 - Local sample mode for quick previews
-- Prepared server-side AI generation flow (requires setup)
+- Prepared server-side AI generation flow (requires a deployed and configured Worker)
 - Copy-to-clipboard and plain-text download
 - No frontend build step
 
@@ -43,23 +45,21 @@ Open `index.html` in a modern browser, or serve the repository with any static w
 
 ## Deploy the AI backend
 
-Follow [AI-SETUP.md](AI-SETUP.md). Never expose the OpenAI API key in browser code or GitHub. The Worker uses `gpt-6-luna` by default and sends requests through the OpenAI Responses API with `store: false`.
+Follow [AI-SETUP.md](AI-SETUP.md). Never expose the OpenAI API key in browser code or GitHub. The Worker uses the configured model and sends requests through the OpenAI Responses API with `store: false`.
 
 ## Before public launch
 
-- Deploy and test the Worker and website integration.
-- Add GitHub Actions repository secrets `CLOUDFLARE_API_TOKEN` (Workers Scripts: Edit) and `CLOUDFLARE_ACCOUNT_ID` to enable the new automated Worker deployment workflow.
-- Deploy the D1-backed rate limiting changes and verify the live Worker before public promotion.
-- Monitor API usage/spending.
+- Verify Worker health and complete an end-to-end AI generation test from the public website.
+- Add GitHub Actions repository secrets `CLOUDFLARE_API_TOKEN` (Workers Scripts: Edit) and `CLOUDFLARE_ACCOUNT_ID` to enable automated Worker deployment.
+- Monitor API usage/spending and verify the demo limits.
 - Review and complete the privacy and terms pages with the operator's real contact/legal information.
-- Implement secure authentication and tenant-scoped data access using the provisioned D1 database.
+- Implement secure authentication, authorization and tenant-scoped data access using the provisioned D1 database.
 - Add server-side usage metering and subscription entitlements before payment integration.
 - Add payments only after seller approval and legal readiness.
 
 ## Security
 
 Do not commit API keys, passwords, customer records, or other secrets. CORS is a browser control, not authentication or abuse protection. Do not enter sensitive customer information into the AI form.
-
 
 ## Payments readiness
 
