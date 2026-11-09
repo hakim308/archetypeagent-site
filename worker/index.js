@@ -1,7 +1,5 @@
 const ALLOWED_ORIGINS = new Set([
-  "https://hakim308.github.io",
-  "https://archetypeagent.com",
-  "https://www.archetypeagent.com"
+  "https://hakim308.github.io"
 ]);
 
 function corsHeaders(origin) {
