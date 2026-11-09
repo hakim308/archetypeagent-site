@@ -1,6 +1,6 @@
-# Archetype Agent
+# Taskora AI
 
-A lightweight, mobile-friendly marketing workspace for small businesses.
+A lightweight, mobile-friendly AI marketing workspace for small businesses.
 
 ## Market research and product direction
 
