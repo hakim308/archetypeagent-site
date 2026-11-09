@@ -63,4 +63,4 @@ Do not commit API keys, passwords, customer records, or other secrets. CORS is a
 
 ## Payments readiness
 
-See [PAYMENTS-READINESS.md](PAYMENTS-READINESS.md) for PayPal eligibility checks, provider-neutral checkout architecture, subscription lifecycle, sandbox test plan and go-live gates. Live payments remain disabled until merchant, legal, technical and payout eligibility are verified.
+See [PAYMENTS-READINESS.md](PAYMENTS-READINESS.md) for PayPal eligibility checks, a researched Lemon Squeezy payout route to a verified personal PayPal account, provider-neutral checkout architecture, subscription lifecycle, sandbox test plan and go-live gates. Live payments remain disabled until merchant, legal, technical and payout eligibility are verified.
