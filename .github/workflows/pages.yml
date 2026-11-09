@@ -23,12 +23,21 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Prepare public website artifact
+        run: |
+          rm -rf site-dist
+          mkdir -p site-dist
+          cp index.html privacy.html terms.html favicon.svg robots.txt sitemap.xml site-dist/
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload static site
+
+      - name: Upload only public website files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: site-dist
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
