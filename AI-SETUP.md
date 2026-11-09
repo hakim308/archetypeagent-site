@@ -67,7 +67,7 @@ If `configured` is false, the secret was not saved to this Worker or the latest 
 4. Commit the change. Wait for GitHub Pages to finish deploying.
 5. Open the site, create a small test post, and select **Generate with AI**.
 
-The Worker allows the GitHub Pages origin and the future custom-domain origins `https://archetypeagent.com` and `https://www.archetypeagent.com`.
+The Worker currently allows only the GitHub Pages origin `https://hakim308.github.io`. Add a future production site origin only after its domain and hosting are confirmed; remove any domain from the allowlist before transferring or selling it.
 
 ## 5. Protect the public endpoint before launch
 
